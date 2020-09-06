@@ -52,6 +52,7 @@ nav .active{
 
 nav{
   background-color: #373d40;
+  padding: 20px!important;
 }
 
 a{
@@ -80,7 +81,7 @@ canvas {
   top:0;
   left:0;
   pointer-events: none;
-  z-index:2000;
+  //z-index:2000;
 }
 
 #loading-screen {
@@ -296,7 +297,7 @@ footer{
 }
 
 .facebook-text{
-  font-size: large;
+  font-size: x-large;
   line-height: 53px;
 }
 
@@ -391,7 +392,7 @@ footer{
   }
 
   .z-index-set{
-    z-index: 2100;
+    z-index: 2100!important;
   }
   .navbar{
     z-index: 2200;
@@ -401,5 +402,13 @@ footer{
     transform: scale(.5)!important;
     margin-bottom: -80px!important;
   }
+
+  .bottom-text{
+    display: none;
+  }
+
+/*  .about-text{
+    margin-top: 400px;
+  }*/
 
 }

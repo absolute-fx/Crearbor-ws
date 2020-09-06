@@ -40,7 +40,8 @@ nav .active {
   transition: width .3s; }
 
 nav {
-  background-color: #373d40; }
+  background-color: #373d40;
+  padding: 20px !important; }
 
 a {
   color: #8b9b5d; }
@@ -62,8 +63,7 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none;
-  z-index: 2000; }
+  pointer-events: none; }
 
 #loading-screen {
   position: absolute;
@@ -240,7 +240,7 @@ footer {
   display: inline-block; }
 
 .facebook-text {
-  font-size: large;
+  font-size: x-large;
   line-height: 53px; }
 
 .credential {
@@ -314,13 +314,20 @@ footer {
     font-size: 12px; }
 
   .z-index-set {
-    z-index: 2100; }
+    z-index: 2100 !important; }
 
   .navbar {
     z-index: 2200; }
 
   .img-scale {
     transform: scale(0.5) !important;
-    margin-bottom: -80px !important; } }
+    margin-bottom: -80px !important; }
+
+  .bottom-text {
+    display: none; }
+
+  /*  .about-text{
+      margin-top: 400px;
+    }*/ }
 
 /*# sourceMappingURL=main.css.map */

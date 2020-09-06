@@ -6,7 +6,7 @@ import { RenderPass } from '../js/jsm/postprocessing/RenderPass.js';
 
 
 let container;
-let camera, scene, renderer, ambientLight, pointLight, pointLight2, pointLight3, pointLight4, composer;
+let camera, scene, renderer, ambientLight, pointLight, composer;
 let rendering = true;
 let loadingManager_r1;
 let tree_1, tree_2, about_scene, about_logo_scene, fireplace_scene;
@@ -24,6 +24,7 @@ let targetX = 0;
 let targetY = 0;
 let mouseX = 0;
 let mouseY = 0;
+let canvasMaxZ = true;
 
 // default
 let camPositions = [];
@@ -33,30 +34,30 @@ let camTargetPositions = [];
 let lgCamPos = [
     {x:2336, y:444, z:593},
     {x:1595, y:-440, z:480},
-    {x:890, y:-2175, z:560},
+    {x:890, y:-2125, z:560},
     {x:600, y:-2400, z:690}
 ];
 
 let lgCamTargetPos = [
     { x: 0, y:511, z:700 },
     { x: 353, y:-910, z:850 },
-    { x: 170, y:-2075, z:1030 },
+    { x: 170, y:-2065, z:1030 },
     { x: 0, y:-2500, z:1125 }
 ];
 
 // < 768 XS
 let xsCamPos = [
     {x:5000, y:444, z:593},
-    {x:1595, y:-440, z:480},
-    {x:1595, y:-440, z:480},
-    {x:2336, y:444, z:593}
+    {x:1595, y:1000, z:1000},
+    {x:890, y:1000, z:560},
+    {x:600, y:1000, z:690}
 ];
 
 let xsCamTargetPos = [
-    { x: 0, y:1200, z:450 },
-    { x: 353, y:-910, z:720 },
-    { x: 353, y:-910, z:700 },
-    { x: 541, y:-511, z:1500 }
+    { x: 0, y:1200, z:50 },
+    { x: 353, y:1000, z:1250 },
+    { x: 170, y:1000, z:1030 },
+    { x: 0, y:1000, z:1125 }
 ];
 
 let clickAnimate = false;
@@ -93,7 +94,7 @@ function init() {
     checkInnerWidth();
     setSceneLoader_1();
     container = document.createElement( 'div' );
-    document.body.appendChild( container );
+    document.body.prepend( container );
 
     camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
     camera.position.set( camPositions[0].x, camPositions[0].y, camPositions[0].z);
@@ -104,6 +105,10 @@ function init() {
     let light = new THREE.HemisphereLight( 0xffffff, 0xeeeeee, 1 );
     scene.add( light );
 
+    pointLight = new THREE.PointLight( 0xffffff, 100, 2000 );
+    pointLight.position.set( 320, -1980, 1100 );
+    scene.add( pointLight );
+
     renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -111,9 +116,16 @@ function init() {
 
     renderer.outputEncoding = THREE.sRGBEncoding;
     container.appendChild( renderer.domElement );
+    if(window.innerWidth <= 768){
+        $('canvas').css('z-index', 0);
+    }else{
+        $('canvas').css('z-index', 2000);
+    }
+
 
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.addEventListener( 'scroll', onDocumentScroll, false );
 
     composer = new EffectComposer(renderer);
     const renderPass = new RenderPass( scene, camera );
@@ -293,10 +305,18 @@ function setScene_1(){
         scene.add(about_logo_scene);
     });
 
-    aoMap = textureLoader.load( './assets/fireplace_ao.jpg', (texture) =>{texture.anisotropy = renderer.capabilities.getMaxAnisotropy()} );
+    aoMap = textureLoader.load( './assets/fireplace_ao.jpg' );
+    //aoMap.encoding = THREE.sRGBEncoding;
+
+    let roughnessMap = textureLoader.load( './assets/roughness.jpg' );
     aoMap.encoding = THREE.sRGBEncoding;
+
     let fireplace = new THREE.MeshStandardMaterial({
         color: 0x1d2124,
+        envMapIntensity: 1,
+        envMap: mainEnv,
+        roughnessMap: roughnessMap,
+        roughness: 0.4,
         aoMap: aoMap,
         aoMapIntensity: 1
     });
@@ -313,7 +333,7 @@ function setScene_1(){
         aoMapIntensity: 1
     });
 
-    aoMap = textureLoader.load( './assets/fireplace-ground.png', (texture) =>{texture.anisotropy = renderer.capabilities.getMaxAnisotropy()} );
+    aoMap = textureLoader.load( './assets/fireplace-ground.png' );
     aoMap.encoding = THREE.sRGBEncoding;
     let fireplace_ground = new THREE.MeshStandardMaterial( {
         map: aoMap,
@@ -326,7 +346,21 @@ function setScene_1(){
         envMapIntensity: 1,
         roughness: 0.5,
         transparent : true,
-        opacity: 0.5
+        opacity: 0.3
+    } );
+
+    diffuseMap = textureLoader.load( './assets/fire.png', (texture) =>{texture.anisotropy = renderer.capabilities.getMaxAnisotropy()} );
+    //diffuseMap.encoding = THREE.sRGBEncoding;
+    let fire = new THREE.MeshStandardMaterial( {
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        //depthTest: false,
+        //color: 0xffffff,
+        emissive: 0xff8905,
+        emissiveMap: diffuseMap,
+        emissiveIntensity: 1,
+        map: diffuseMap,
+        transparent: diffuseMap
     } );
 
     fbxLoader.load( './assets/fireplace.fbx', function ( object ) {
@@ -343,6 +377,9 @@ function setScene_1(){
                 if(child.name === 'ground-fireplace'){
                     child.material = fireplace_ground;
                 }
+                if(child.name === 'fire'){
+                    child.material = fire;
+                }
             }
         });
         fireplace_scene = object;
@@ -352,9 +389,6 @@ function setScene_1(){
 
         scene.add(fireplace_scene);
     });
-
-
-
 }
 
 function setSceneLoader_1(){
@@ -389,7 +423,7 @@ function setSceneLoader_1(){
 }
 
 function animate() {
-    console.log(window.innerWidth);
+    //console.log(window.innerWidth);
     if ( scene ) {
         tree_1.rotation.y += .0025
         tree_2.rotation.y += .0025
@@ -412,15 +446,15 @@ function animate() {
         }
         mouseX = ( x - windowHalfX )/5;
         mouseY = ( y - windowHalfY )/5;
-        targetX = mouseX * .001;
-        targetY = mouseY * .001;
+        targetX = mouseX * .0025;
+        targetY = mouseY * .0025;
         about_logo_scene.rotation.y += idleSensibility * ( targetX - about_logo_scene.rotation.y );
         //about_logo_scene.rotation.x += idleSensibility * ( targetY - about_logo_scene.rotation.x );
         fireplace_scene.rotation.y += idleSensibility * ( targetX - fireplace_scene.rotation.y );
         //fireplace_scene.rotation.x += idleSensibility * ( targetY - fireplace_scene.rotation.x );
     }
     TWEEN.update();
-    if(clickAnimate){
+    /*if(clickAnimate){
         if(window.scrollY > 0){
             //console.log('anim click = true');
             updateCamera();
@@ -428,7 +462,7 @@ function animate() {
     }else{
         //console.log('anim click = false');
         updateCamera();
-    }
+    }*/
     composer.render();
     if(rendering) requestAnimationFrame( animate );
 }
@@ -448,12 +482,12 @@ function updateCamera(){
     }
 
     starts.push(sectionYPos[1]);
-    stops.push(starts[1] + (sectionsSizes[1] *.5));
+    stops.push(starts[1] + (sectionsSizes[1]));
     if(window.scrollY >= starts[1] && window.scrollY < stops[1] ){
         moveCam(1, starts[1], stops[1], false);
     }
     starts.push(sectionYPos[2]);
-    stops.push(starts[2] + (sectionsSizes[2] *.5));
+    stops.push(starts[2] + (sectionsSizes[2]));
     if(window.scrollY >= starts[2] && window.scrollY < stops[2] ){
         moveCam(2, starts[2], stops[2], false);
     }
@@ -466,26 +500,28 @@ function moveCam(i, start, stop, circle){
     //console.log(camPositions[(i+1)].z);
     let totalPixMove = stop - start;
     if(!circle){
-        camera.position.x =  camPositions[i].x + ((window.scrollY - start) * xMove) / totalPixMove;
-        camera.position.z =  camPositions[i].z + ((window.scrollY - start) * zMove) / totalPixMove;
+        camera.position.x =  Math.round(camPositions[i].x + ((window.scrollY - start) * xMove) / totalPixMove);
+        camera.position.z =  Math.round(camPositions[i].z + ((window.scrollY - start) * zMove) / totalPixMove);
     }else{
         let val = 0.025;
-        camera.position.x = camera.position.x * Math.cos(((window.scrollY - start) * val) / totalPixMove) + camera.position.z * Math.sin(((window.scrollY - start) * val) / totalPixMove);
+        camera.position.x = Math.round(camera.position.x * Math.cos(((window.scrollY - start) * val) / totalPixMove) + camera.position.z * Math.sin(((window.scrollY - start) * val) / totalPixMove));
         camPositions[2].x = camera.position.x;
-        camera.position.z = camera.position.z * Math.cos(((window.scrollY - start) * val) / totalPixMove) - camera.position.x * Math.sin(((window.scrollY - start) * val) / totalPixMove);
+        camera.position.z = Math.round(camera.position.z * Math.cos(((window.scrollY - start) * val) / totalPixMove) - camera.position.x * Math.sin(((window.scrollY - start) * val) / totalPixMove));
         camPositions[2].z = camera.position.z;
 
     }
-    camera.position.y =  camPositions[i].y + ((window.scrollY - start) * yMove) / totalPixMove;
+    camera.position.y =  Math.round(camPositions[i].y + ((window.scrollY - start) * yMove) / totalPixMove);
 
     let xTargetMove = getCameraTranslation(camTargetPositions[i].x, camTargetPositions[(i+1)].x);
-    let lookAtX = camTargetPositions[i].x + ((window.scrollY - start) * xTargetMove) / totalPixMove;
+    let lookAtX = Math.round(camTargetPositions[i].x + ((window.scrollY - start) * xTargetMove) / totalPixMove);
 
     let yTargetMove = getCameraTranslation(camTargetPositions[i].y, camTargetPositions[(i+1)].y);
-    let lookAtY = camTargetPositions[i].y + ((window.scrollY - start) * yTargetMove) / totalPixMove;
+    let lookAtY = Math.round(camTargetPositions[i].y + ((window.scrollY - start) * yTargetMove) / totalPixMove);
 
     let zTargetMove = getCameraTranslation(camTargetPositions[i].z, camTargetPositions[(i+1)].z);
-    let lookAtZ = camTargetPositions[i].z + ((window.scrollY - start) * zTargetMove) / totalPixMove;
+    let lookAtZ = Math.round(camTargetPositions[i].z + ((window.scrollY - start) * zTargetMove) / totalPixMove);
+
+    //console.log(camera.position.x + ' - ' + camera.position.y + ' - ' + camera.position.z);
 
     camera.lookAt( lookAtX, lookAtY, lookAtZ);
 }
@@ -531,6 +567,36 @@ function onDocumentMouseMove( event ) {
     mouseY = ( event.clientY - windowHalfY )/5;
     mX = event.clientX;
     mY = event.clientY;
+}
+
+function onDocumentScroll(event){
+    //console.log(window.scrollY);
+    if(window.scrollY > window.innerHeight){
+        if(canvasMaxZ){
+            console.log('-> Z0')
+            canvasMaxZ = false;
+            $('canvas').css('z-index', 0);
+        }
+    }else{
+        if(!canvasMaxZ){
+            console.log('-> Z2000')
+            canvasMaxZ = true;
+            if(window.innerWidth <= 768){
+                $('canvas').css('z-index', 0);
+            }else{
+                $('canvas').css('z-index', 2000);
+            }
+        }
+    }
+    if(clickAnimate){
+        if(window.scrollY > 0){
+            //console.log('anim click = true');
+            updateCamera();
+        }
+    }else{
+        //console.log('anim click = false');
+        updateCamera();
+    }
 }
 
 function getSectionsSize(){
