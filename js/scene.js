@@ -109,7 +109,7 @@ function init() {
     pointLight.position.set( 320, -1980, 1100 );
     scene.add( pointLight );
 
-    renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+    renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true, frustumCulled:false } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.physicallyCorrectLights = true;
@@ -185,7 +185,7 @@ function setScene_1(){
     });
 
     fbxLoader.load( './assets/tree-01.fbx', function ( object ) {
-
+        object.traverse(obj => obj.frustumCulled = false);
         object.traverse( function ( child ) {
             if ( child.isMesh ) {
                 //console.log(child.name);
@@ -213,7 +213,6 @@ function setScene_1(){
 
         scene.add( tree_1 );
         scene.add( tree_2 );
-
     } );
 
 
@@ -260,6 +259,7 @@ function setScene_1(){
     } );
 
     fbxLoader.load( './assets/about.fbx', function ( object ) {
+        object.traverse(obj => obj.frustumCulled = false);
         object.traverse( function ( child ) {
             if ( child.isMesh ) {
                 if(child.name === 'about'){
@@ -290,6 +290,7 @@ function setScene_1(){
     } );
 
     fbxLoader.load( './assets/logo_plane.fbx', function ( object ) {
+        object.traverse(obj => obj.frustumCulled = false);
         object.traverse( function ( child ) {
             if ( child.isMesh ) {
                 child.material = logo_mat;
@@ -364,6 +365,7 @@ function setScene_1(){
     } );
 
     fbxLoader.load( './assets/fireplace.fbx', function ( object ) {
+        object.traverse(obj => obj.frustumCulled = false);
         object.traverse( function ( child ) {
             if ( child.isMesh ) {
                 if(child.name === 'fireplace'){
