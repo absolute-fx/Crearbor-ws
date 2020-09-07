@@ -273,6 +273,17 @@ footer {
 .fire-wood-leaf {
   text-align: right; }
 
+.contact-section {
+  height: 100vh; }
+
+.contact-container {
+  padding: 50px;
+  height: 100%; }
+
+.contact-background {
+  background-color: #8B9B5D;
+  height: 100%; }
+
 @media screen and (max-width: 768px) {
   .fire-wood-leaf {
     text-align: center;
@@ -325,6 +336,12 @@ footer {
 
   .bottom-text {
     display: none; }
+
+  .contact-logo {
+    transform: scale(0.75) !important; }
+
+  .contact-container {
+    padding: 0px 50px 50px 50px !important; }
 
   /*  .about-text{
       margin-top: 400px;

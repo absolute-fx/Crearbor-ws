@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Cre'Arbor">
+    <meta property="og:image" content="/images/social-image.jpg">
+    <meta property="og:description" content="Vente de de bois de chauffage">
+    <meta property='og:url' content='http://crearbor.be' />
     <link rel="icon" href="./images/icon.png">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="./css/main.css">
@@ -63,7 +68,7 @@
             </div>
         </div>
     </div>
-    <div id="section-bottom" style="position: relative; z-index:-1">
+    <div id="section-bottom" style="position: relative; z-index:0">
         <div class="bottom-text container-fluid pt-3 z-index-set">
             <div class="row mb-5">
                 <div class="col-md-4"></div>
@@ -224,22 +229,22 @@
                 <h2 class="crearbor-brown-a" data-aos="fade-right">Une question ou un devis? Nous sommes à votre service!</h2>
             </div>
         </div>
-        <form action="" method="post">
+        <form action="./contact.php" method="post">
             <div class="row mt-5">
                 <div class="col-md-2" ></div>
                 <div class="col-md-2">
                     <div class="from-group user-data" data-aos="zoom-in-down">
-                        <input type="text" class="form-control" placeholder="Nom complet">
+                        <input type="text" class="form-control" name="fullname" placeholder="Nom complet" required>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="from-group user-data" data-aos="zoom-in-down">
-                        <input type="email" class="form-control" placeholder="E-mail">
+                        <input type="email" class="form-control" name="email" placeholder="E-mail" required>
                     </div>
                 </div>
                 <div class="col-md-2" >
                     <div class="from-group" data-aos="zoom-in-down">
-                        <input type="text" class="form-control" placeholder="GSM">
+                        <input type="text" class="form-control" name="mobile" placeholder="GSM">
                     </div>
                 </div>
                 <div class="col-md-4" ></div>
@@ -248,7 +253,7 @@
                 <div class="col-md-2" ></div>
                 <div class="col-md-6">
                     <div class="from-group" data-aos="zoom-in">
-                        <textarea name="" class="form-control" rows="8" id="" placeholder="Message"></textarea>
+                        <textarea name="message" class="form-control" rows="8" id="" placeholder="Message" required></textarea>
                     </div>
                 </div>
                 <div class="col-md-4" ></div>
