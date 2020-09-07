@@ -6,7 +6,7 @@ use Mailjet\Resources;
 
 $error = 0;
 
-if (filter_var(htmlentities($_POST['email']), FILTER_VALIDATE_EMAIL)) {
+if (!filter_var(htmlentities($_POST['email']), FILTER_VALIDATE_EMAIL)) {
     $error = 1;
 } else {
     $fullName = htmlentities($_POST['fullname']);
