@@ -24,21 +24,6 @@ if (!filter_var(htmlentities($_POST['email']), FILTER_VALIDATE_EMAIL)) {
                 ],
                 'To' => [
                     [
-                        'Email' => $email,
-                        'Name' => $fullName
-                    ]
-                ],
-                'TemplateID' => 1670943,
-                'TemplateLanguage' => true,
-                'Subject' => "Contact site web Cre'Arbor"
-            ],
-            [
-                'From' => [
-                    'Email' => "philippe.janssens@hotmail.co.uk",
-                    'Name' => "Cre'Arbor"
-                ],
-                'To' => [
-                    [
                         'Email' => 'philippe.janssens@hotmail.co.uk',
                         'Name' => "Cre'Arbor"
                     ]
@@ -52,7 +37,22 @@ if (!filter_var(htmlentities($_POST['email']), FILTER_VALIDATE_EMAIL)) {
                     'mobile' => $mobile,
                     'message' => $message
                 ]
-            ]
+            ],
+            [
+                'From' => [
+                    'Email' => "philippe.janssens@hotmail.co.uk",
+                    'Name' => "Cre'Arbor"
+                ],
+                'To' => [
+                    [
+                        'Email' => $email,
+                        'Name' => $fullName
+                    ]
+                ],
+                'TemplateID' => 1670943,
+                'TemplateLanguage' => true,
+                'Subject' => "Contact site web Cre'Arbor"
+            ],
         ]
     ];
     $response = $mj->post(Resources::$Email, ['body' => $body]);
