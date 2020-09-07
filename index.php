@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="og:title" content="Cre'Arbor">
-    <meta property="og:image" content="/images/social-image.jpg">
-    <meta property="og:description" content="Vente de de bois de chauffage">
+    <meta property="og:title" content="Cre'Arbor, vente de bois de chauffage">
+    <meta property="twitter:title" content="Cre'Arbor, vente de bois de chauffage">
+    <meta property="og:image" content="https://crearbor.be/images/social-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:description" content="Cre’Arbor est une entreprise familiale basée à Ecaussinnes et spécialisée dans la vente de bois de chauffage made in belgium">
+    <meta property="twitter:description" content="Cre’Arbor est une entreprise familiale basée à Ecaussinnes et spécialisée dans la vente de bois de chauffage made in belgium">
     <meta property='og:url' content='http://crearbor.be' />
     <link rel="icon" href="./images/icon.png">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -298,7 +301,7 @@
             <div class="col-md-1"></div>
         </div>
         <div class="credential">
-            By AfxLab - creative websites for creative people
+            By <a href="http://www.absolute-fx.com" target="_blank">AfxLab</a> - creative websites for creative people
         </div>
     </div>
 </footer>

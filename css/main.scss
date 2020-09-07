@@ -286,6 +286,14 @@ footer{
   background-color: #a66652;
 }
 
+.footer-social-text a, .social-text a{
+  color: #211715!important;
+}
+
+.footer-social-text a:hover, .social-text a:hover{
+  color: #8B9B5D!important;
+}
+
 .footer-right{
   background-color: #a66652;
 }
@@ -309,9 +317,19 @@ footer{
 }
 
 .credential{
-  font-size: small;
+  margin-top: 10px;
+  font-size: large;
   text-align: center;
   color: white;
+}
+
+.credential a{
+  color: white;
+}
+
+.credential a:hover{
+  color: white;
+  text-decoration: underline;
 }
 
 .big-btn{
@@ -328,7 +346,7 @@ footer{
 }
 
 .btn-grey{
-  color: #95523F;
+  color: #8B9B5D;
   background-color: #373d40;
   box-shadow:
           6px 6px 6px #21282D ,
@@ -341,8 +359,7 @@ footer{
 }
 
 .btn-grey:hover{
-  color: #8B9B5D;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 30%);
+  color: #95523F;
 }
 
 .fire-wood-leaf{
