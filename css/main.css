@@ -18,6 +18,9 @@ nav a {
   font-family: c_light;
   font-size: large; }
 
+body {
+  font-family: c_light; }
+
 nav a:hover {
   color: #8b9b5d; }
 
@@ -153,21 +156,23 @@ canvas {
 
 #section-bottom {
   height: 50vh;
-  background-color: #95523F; }
+  background-color: #95523F;
+  position: relative;
+  z-index: 0; }
 
 #about {
   min-height: 100vh;
   background-color: #F9F2E7; }
 
 .about-text {
-  font-size: large; }
+  font-size: x-large; }
 
 #fire-wood {
   min-height: 100vh;
   background-color: #8B9B5D; }
 
 .fire-wood-text {
-  font-size: large; }
+  font-size: x-large; }
 
 #contact {
   min-height: 75vh;
@@ -239,9 +244,10 @@ footer {
 .inline-image {
   display: inline-block; }
 
-.facebook-text {
+.social-text {
   font-size: x-large;
-  line-height: 53px; }
+  line-height: 53px;
+  font-family: "c_light"; }
 
 .credential {
   font-size: small;
@@ -285,6 +291,9 @@ footer {
   height: 100%; }
 
 @media screen and (max-width: 768px) {
+  #section-bottom {
+    z-index: -1; }
+
   .fire-wood-leaf {
     text-align: center;
     margin-top: 20px; }
@@ -316,12 +325,12 @@ footer {
 
   .footer-social-text {
     text-align: center;
-    font-size: 12px; }
+    font-size: large; }
 
   .crearbor-green-c {
     text-align: center; }
 
-  .facebook-text {
+  .social-text {
     font-size: 12px; }
 
   .z-index-set {
