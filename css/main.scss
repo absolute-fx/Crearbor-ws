@@ -258,8 +258,9 @@ canvas {
 
 footer{
   min-height: 25vh;
-  background-color: #8B9B5D;
-  background-image: url("../images/wood-topview.jpg");
+  background-color: #373d40;
+  //background-color: #8B9B5D;
+  //background-image: url("../images/wood-topview.jpg");
 }
 
 .footer-logo{
@@ -454,9 +455,35 @@ footer{
   .contact-container{
     padding: 0px 50px 50px 50px!important;
   }
+  .about-text{
+    font-size: large!important;
+  }
+}
 
-/*  .about-text{
-    margin-top: 400px;
-  }*/
+@media screen and (max-width: 1440px){
+  .fire-wood-text{
+    font-size: large!important;
+  }
+  .headline-container{
+    margin-bottom: 0!important;
+  }
 
+  .top-sub-headline{
+    margin-bottom: 20px!important;
+  }
+
+  nav{
+    padding: 0!important;
+  }
+
+  .section-padding{
+    padding-top: 110px!important;
+  }
+  .logo-image-top{
+    margin: 10px!important;
+  }
+
+  .about-text{
+    font-size: large!important;
+  }
 }

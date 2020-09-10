@@ -24,7 +24,7 @@ if (!filter_var(htmlentities($_POST['email']), FILTER_VALIDATE_EMAIL)) {
                 ],
                 'To' => [
                     [
-                        'Email' => 'philippe.janssens@hotmail.co.uk',
+                        'Email' => 'info@crearbor.be',
                         'Name' => "Cre'Arbor"
                     ]
                 ],

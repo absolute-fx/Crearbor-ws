@@ -9,14 +9,14 @@ let container;
 let camera, scene, renderer, ambientLight, pointLight, composer;
 let rendering = true;
 let loadingManager_r1;
-let tree_1, tree_2, about_scene, about_logo_scene, fireplace_scene;
+let tree_1, tree_2, about_scene, about_logo_scene, fireplace_scene, wood_boards;
 let sectionsSizes = [];
 let sectionYPos = [];
 
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
 const idleRadius = 300;
-const idleSpeed = 0.003;
+const idleSpeed = 0.01;
 const idleSensibility = 0.025;
 let idleStore = 0;
 let mX, mY;
@@ -391,6 +391,30 @@ function setScene_1(){
 
         scene.add(fireplace_scene);
     });
+
+    aoMap = textureLoader.load( './assets/wood_boards_ao.jpg' );
+    aoMap.encoding = THREE.sRGBEncoding;
+    let wood_boards_mat = new THREE.MeshStandardMaterial( {
+        color: 0x373d40,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+    } );
+
+    fbxLoader.load( './assets/wood-boards.fbx', function ( object ) {
+        object.traverse(obj => obj.frustumCulled = false);
+        object.traverse( function ( child ) {
+            if ( child.isMesh ) {
+                child.material = wood_boards_mat;
+            }
+        });
+        wood_boards = object;
+        wood_boards.position.x = 365;
+        wood_boards.position.y = -2541;
+        wood_boards.position.z = 915;
+
+        scene.add(wood_boards);
+    });
+
 }
 
 function setSceneLoader_1(){
@@ -429,7 +453,7 @@ function animate() {
     if ( scene ) {
         tree_1.rotation.y += .0025
         tree_2.rotation.y += .0025
-        about_scene.rotation.y += .0025
+        about_scene.rotation.y -= .0025
 
         if(idleStore <= 360){
             idleStore += idleSpeed;
@@ -448,12 +472,16 @@ function animate() {
         }
         mouseX = ( x - windowHalfX )/5;
         mouseY = ( y - windowHalfY )/5;
-        targetX = mouseX * .0025;
-        targetY = mouseY * .0025;
-        about_logo_scene.rotation.y += idleSensibility * ( targetX - about_logo_scene.rotation.y );
+        targetX = mouseX * .002;
+        targetY = mouseY * .002;
+        //about_logo_scene.rotation.y += idleSensibility * ( targetX - about_logo_scene.rotation.y );
         //about_logo_scene.rotation.x += idleSensibility * ( targetY - about_logo_scene.rotation.x );
         fireplace_scene.rotation.y += idleSensibility * ( targetX - fireplace_scene.rotation.y );
         //fireplace_scene.rotation.x += idleSensibility * ( targetY - fireplace_scene.rotation.x );
+        targetX = mouseX * .0001;
+        targetY = mouseY * .0001;
+        wood_boards.rotation.y += idleSensibility * ( targetX - wood_boards.rotation.y );
+        wood_boards.rotation.x += idleSensibility * ( targetX - wood_boards.rotation.x );
     }
     TWEEN.update();
     /*if(clickAnimate){
@@ -608,10 +636,10 @@ function getSectionsSize(){
         sectionYPos.push(yPos);
         yPos += $(this).height();
     });
-    console.log("sectionsSizes");
+    /*console.log("sectionsSizes");
     console.log(sectionsSizes);
     console.log("sectionYPos");
-    console.log(sectionYPos);
+    console.log(sectionYPos);*/
 }
 
 function onWindowResize() {
@@ -624,7 +652,7 @@ function onWindowResize() {
     windowHalfY = window.innerHeight / 2;
     getSectionsSize();
     checkInnerWidth();
-
+    console.log(window.innerWidth);
 }
 
 function checkInnerWidth(){

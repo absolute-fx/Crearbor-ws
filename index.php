@@ -27,7 +27,7 @@
 </div>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-    <img src="./images/logo-small.png" class="img m-0" alt="Cre'Arbor logo" id="nav-logo" data-aos="fade-left" data-aos-offset="200" data-aos-duration="800"/>
+    <img src="./images/logo-small.png" class="img-fluid m-0 logo-image-top" alt="Cre'Arbor logo" id="nav-logo" data-aos="fade-left" data-aos-offset="200" data-aos-duration="800"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation" data-aos="fade-right">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,7 +73,7 @@
     </div>
     <div id="section-bottom">
         <div class="bottom-text container-fluid pt-3 z-index-set">
-            <div class="row mb-5">
+            <div class="row mb-5 top-sub-headline">
                 <div class="col-md-4"></div>
                 <div class="col-md-8" data-aos="fade-up">
                     <h2 class="sub-header ">À votre service</h2>
@@ -102,7 +102,7 @@
 
 <section id="about" class="d-none">
     <div class="container-fluid">
-        <div class="row section-padding mb-5">
+        <div class="row section-padding mb-5 headline-container">
             <div class="col-md-2" >
 
             </div>
@@ -140,7 +140,7 @@
 
 <section id="fire-wood" class="d-none">
     <div class="container-fluid">
-        <div class="row section-padding mb-5">
+        <div class="row section-padding mb-5 headline-container">
             <div class="col-md-2" ></div>
             <div class="col-md-10">
                 <h1 class="" data-aos="fade-down">BOIS DE CHAUFFAGE</h1>
@@ -170,7 +170,7 @@
                 <img src="./images/green_leaf_shadow.png" alt="Cre'Arbor leaf" data-aos="flip-left">
             </div>
             <div class="col-md-6 pt-3 fire-wood-text" data-aos="fade-up" data-aos-offset="200">
-                Le bois de chauffage Cre’Arbor provient à <strong>100% d’essences d’arbres durs et de 1ère qualitéw</strong>, comme le chêne, le hêtre, le frêne et le charme.  C’est la garantie du <strong>meilleur rendement calorifique</strong>.
+                Le bois de chauffage Cre’Arbor provient à <strong>100% d’essences d’arbres durs et de 1ère qualité</strong>, comme le chêne, le hêtre, le frêne et le charme.  C’est la garantie du <strong>meilleur rendement calorifique</strong>.
             </div>
             <div class="col-md-1" ></div>
         </div>
@@ -231,7 +231,7 @@
 </section>
 <section id="contact" class="d-none">
     <div class="container-fluid">
-        <div class="row section-padding">
+        <div class="row section-padding headline-container">
             <div class="col-md-2" >
 
             </div>
