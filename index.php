@@ -5,8 +5,8 @@
     <title>Cre'Arbor</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="og:title" content="Cre'Arbor, vente de bois de chauffage">
-    <meta property="twitter:title" content="Cre'Arbor, vente de bois de chauffage">
+    <meta property="og:title" content="Cre'Arbor, élagage, abattage et bois de chauffage">
+    <meta property="twitter:title" content="Cre'Arbor, élagage, abattage et bois de chauffage">
     <meta property="og:image" content="https://crearbor.be/images/social-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:description" content="Cre’Arbor est une entreprise familiale basée à Ecaussinnes et spécialisée dans la vente de bois de chauffage made in belgium">
