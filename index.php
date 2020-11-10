@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Cre'Arbor</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:title" content="Cre'Arbor, vente de bois de chauffage">
@@ -15,7 +16,17 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="./css/main.css">
     <link type="text/css" rel="stylesheet" href="./css/aos.css">
-    <title>Cre'Arbor</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36537469-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-36537469-3');
+    </script>
+
 </head>
 <body>
 
@@ -41,6 +52,9 @@
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-href="#about" data-toggle="collapse" data-target=".navbar-collapse.show">Qui sommes-nous?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-href="#about" data-toggle="collapse" data-target=".navbar-collapse.show">Elagage & abattage</a>
                 </li>
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
                 <li class="nav-item">
@@ -134,6 +148,23 @@
             <div class="col-md-1" >
 
             </div>
+        </div>
+    </div>
+</section>
+
+<section id="pruning" class="d-none">
+    <div class="container-fluid">
+    <div class="row section-padding mb-5 headline-container">
+            <div class="col-md-2" >
+
+            </div>
+            <div class="col-md-10">
+                <h1 class="crearbor-green-a" data-aos="fade-down">Elagage & Abattage</h1>
+                <h2 class="crearbor-grey" data-aos="fade-right">A votre côté tout au long du cycle de vie de l'arbre</h2>
+            </div>
+        </div>
+        <div class="row">
+            <p>patata</p>
         </div>
     </div>
 </section>
@@ -300,8 +331,12 @@
             </div>
             <div class="col-md-1"></div>
         </div>
-        <div class="credential">
-            By <a href="http://www.absolute-fx.com" target="_blank">AfxLab</a> - creative websites for creative people
+        <div class="row">
+            <div class="col-md-12">
+                <div class="credential">
+                    By <a href="http://www.absolute-fx.com" target="_blank">AfxLab</a> - creative websites for creative people
+                </div>
+            </div>
         </div>
     </div>
 </footer>

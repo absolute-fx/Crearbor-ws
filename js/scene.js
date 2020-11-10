@@ -9,7 +9,7 @@ let container;
 let camera, scene, renderer, ambientLight, pointLight, composer;
 let rendering = true;
 let loadingManager_r1;
-let tree_1, tree_2, about_scene, about_logo_scene, fireplace_scene, wood_boards;
+let tree_1, tree_2, about_scene, about_logo_scene, fireplace_scene, wood_boards, chainsaw, pictures;
 let sectionsSizes = [];
 let sectionYPos = [];
 
@@ -31,18 +31,21 @@ let camPositions = [];
 let camTargetPositions = [];
 
 // 1024
+const updateZ = 80;
 let lgCamPos = [
     {x:2336, y:444, z:593},
     {x:1595, y:-440, z:480},
-    {x:890, y:-2125, z:560},
-    {x:600, y:-2400, z:690}
+    {x:370, y:-1520, z:1120},
+    {x:890, y:(-2125 - updateZ), z:560},
+    {x:600, y:(-2400 - updateZ), z:690}
 ];
 
 let lgCamTargetPos = [
     { x: 0, y:511, z:700 },
     { x: 353, y:-910, z:850 },
-    { x: 170, y:-2065, z:1030 },
-    { x: 0, y:-2500, z:1125 }
+    { x: 20, y:-1655, z:1145 },
+    { x: 170, y:(-2065 - updateZ), z:1030 },
+    { x: 0, y:(-2500 - updateZ), z:1125 }
 ];
 
 // < 768 XS
@@ -144,7 +147,6 @@ function init() {
             i++;
         });
     });
-
     setScene_1()
 
 }
@@ -203,7 +205,7 @@ function setScene_1(){
         tree_1.scale.z = 0;
 
         tree_2.position.x = -930;
-        tree_2.position.y = -2780;
+        tree_2.position.y = -2780 - updateZ;
         tree_2.position.z = 1220;
 
         tree_2.scale.x = 0.4;
@@ -306,11 +308,95 @@ function setScene_1(){
         scene.add(about_logo_scene);
     });
 
+    // ELAGAGE
+
+    aoMap = textureLoader.load( './assets/ground_chainsaw.png' );
+    aoMap.encoding = THREE.sRGBEncoding;
+    const g_chainsaw = new THREE.MeshStandardMaterial( {
+        map: aoMap,
+        transparent: aoMap
+    } );
+
+    aoMap = textureLoader.load( './assets/chainsaw_lm.jpg' );
+    aoMap.encoding = THREE.sRGBEncoding;
+    let roughnessMap = textureLoader.load( './assets/roughness.jpg' );
+    roughnessMap.encoding = THREE.sRGBEncoding;
+    const cs_plastic = new THREE.MeshStandardMaterial({
+        color: 0xb60202,
+        envMapIntensity: 1,
+        envMap: mainEnv,
+        roughnessMap: roughnessMap,
+        roughness: .5,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+    });
+
+    const cs_plastic_dark = new THREE.MeshStandardMaterial({
+        color: 0x111111,
+        envMapIntensity: 1,
+        envMap: mainEnv,
+        roughnessMap: roughnessMap,
+        roughness: .5,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+    });
+
+    const cs_metal_light = new THREE.MeshStandardMaterial({
+        color: 0x9b9b9b,
+        aoMap: aoMap,
+        aoMapIntensity: 1,
+        envMap: mainEnv,
+        metalness: 1
+    });
+
+    const cs_metal_dark = new THREE.MeshStandardMaterial({
+        color: 0xb111111,
+        aoMap: aoMap,
+        aoMapIntensity: 1,
+        metalnessMap: roughnessMap,
+        envMap: mainEnv,
+        metalness: 1
+    });
+    let csResize = 1
+    fbxLoader.load( './assets/chainsaw.fbx', function ( object ) {
+        object.traverse(obj => obj.frustumCulled = false);
+        object.traverse( function ( child ) {
+            //console.log(child);
+            if ( child.isMesh ) {
+                //console.log(child.name);
+                //console.log(child);
+                if(child.name === 'ground_chainsaw001'){
+                    child.material = g_chainsaw;
+                }
+                if(child.name === 'chainsaw001'){
+                    child.material[0] = cs_plastic;
+                    child.material[1] = cs_plastic_dark;
+                    child.material[2] = cs_metal_light;
+                    child.material[3] = cs_metal_dark;
+                }
+            }
+        });
+        chainsaw = object;
+        chainsaw.position.x = 0;
+        chainsaw.position.y = -1700;
+        chainsaw.position.z = 1248;
+        
+        chainsaw.scale.x = csResize;
+        chainsaw.scale.y = csResize;
+        chainsaw.scale.z = csResize;
+
+        scene.add(chainsaw);
+    });
+    
+    
+
+
+    // BOIS
     aoMap = textureLoader.load( './assets/fireplace_ao.jpg' );
     //aoMap.encoding = THREE.sRGBEncoding;
 
-    let roughnessMap = textureLoader.load( './assets/roughness.jpg' );
-    aoMap.encoding = THREE.sRGBEncoding;
+    roughnessMap = textureLoader.load( './assets/roughness.jpg' );
+    roughnessMap.encoding = THREE.sRGBEncoding;
 
     let fireplace = new THREE.MeshStandardMaterial({
         color: 0x1d2124,
@@ -386,12 +472,14 @@ function setScene_1(){
         });
         fireplace_scene = object;
         fireplace_scene.position.x = 285;
-        fireplace_scene.position.y = -2200;
+        fireplace_scene.position.y = -2200 - updateZ;
         fireplace_scene.position.z = 1270;
 
         scene.add(fireplace_scene);
-    });
+    });   
 
+
+    // FOOTER
     aoMap = textureLoader.load( './assets/wood_boards_ao.jpg' );
     aoMap.encoding = THREE.sRGBEncoding;
     let wood_boards_mat = new THREE.MeshStandardMaterial( {
@@ -409,7 +497,7 @@ function setScene_1(){
         });
         wood_boards = object;
         wood_boards.position.x = 365;
-        wood_boards.position.y = -2541;
+        wood_boards.position.y = -2541 - updateZ;
         wood_boards.position.z = 915;
 
         scene.add(wood_boards);
@@ -454,6 +542,8 @@ function animate() {
         tree_1.rotation.y += .0025
         tree_2.rotation.y += .0025
         about_scene.rotation.y -= .0025
+        chainsaw.rotation.y -= .0025
+        //pictures.rotation.y += .002
 
         if(idleStore <= 360){
             idleStore += idleSpeed;
@@ -521,6 +611,11 @@ function updateCamera(){
     if(window.scrollY >= starts[2] && window.scrollY < stops[2] ){
         moveCam(2, starts[2], stops[2], false);
     }
+    starts.push(sectionYPos[3]);
+    stops.push(starts[3] + (sectionsSizes[3]));
+    if(window.scrollY >= starts[3] && window.scrollY < stops[3] ){
+        moveCam(3, starts[3], stops[3], false);
+    }
 }
 
 function moveCam(i, start, stop, circle){
@@ -529,18 +624,12 @@ function moveCam(i, start, stop, circle){
     let zMove = getCameraTranslation(camPositions[i].z, camPositions[(i+1)].z);
     //console.log(camPositions[(i+1)].z);
     let totalPixMove = stop - start;
-    if(!circle){
-        camera.position.x =  Math.round(camPositions[i].x + ((window.scrollY - start) * xMove) / totalPixMove);
-        camera.position.z =  Math.round(camPositions[i].z + ((window.scrollY - start) * zMove) / totalPixMove);
-    }else{
-        let val = 0.025;
-        camera.position.x = Math.round(camera.position.x * Math.cos(((window.scrollY - start) * val) / totalPixMove) + camera.position.z * Math.sin(((window.scrollY - start) * val) / totalPixMove));
-        camPositions[2].x = camera.position.x;
-        camera.position.z = Math.round(camera.position.z * Math.cos(((window.scrollY - start) * val) / totalPixMove) - camera.position.x * Math.sin(((window.scrollY - start) * val) / totalPixMove));
-        camPositions[2].z = camera.position.z;
 
-    }
+    camera.position.x =  Math.round(camPositions[i].x + ((window.scrollY - start) * xMove) / totalPixMove);
+    camera.position.z =  Math.round(camPositions[i].z + ((window.scrollY - start) * zMove) / totalPixMove);
     camera.position.y =  Math.round(camPositions[i].y + ((window.scrollY - start) * yMove) / totalPixMove);
+
+    //console.log(camera.position.y);
 
     let xTargetMove = getCameraTranslation(camTargetPositions[i].x, camTargetPositions[(i+1)].x);
     let lookAtX = Math.round(camTargetPositions[i].x + ((window.scrollY - start) * xTargetMove) / totalPixMove);
@@ -550,6 +639,7 @@ function moveCam(i, start, stop, circle){
 
     let zTargetMove = getCameraTranslation(camTargetPositions[i].z, camTargetPositions[(i+1)].z);
     let lookAtZ = Math.round(camTargetPositions[i].z + ((window.scrollY - start) * zTargetMove) / totalPixMove);
+    //console.log(lookAtY);
 
     //console.log(camera.position.x + ' - ' + camera.position.y + ' - ' + camera.position.z);
 

@@ -3,11 +3,10 @@ body {
   background-color: #373d40;
   color: #fff;
   font-family: Monospace;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 24px;
   overscroll-behavior: none;
 }
-
 @font-face {
   font-family: "c_light";
   src: url('../fonts/Coves-Light.ttf');
@@ -203,6 +202,11 @@ canvas {
   font-size: x-large;
 }
 
+#pruning{
+  min-height: 100vh;
+  background-color: #373d40;
+}
+
 #fire-wood{
   min-height: 100vh;
   background-color: #8B9B5D;
@@ -249,6 +253,49 @@ canvas {
 
 .section-padding{
   padding-top: 140px;
+}
+
+.pruning-list{
+  list-style: none;
+  padding: 0;
+  margin: 0 4rem 0 0;
+  li{
+    background: #8b9b5d;
+    //background-color: #8b9b5d;
+    //background: rgb(13,27,38);
+    //background: linear-gradient(90deg, rgba(13,27,38,1) 0%, rgba(23,43,59,1) 100%);
+    padding: .5rem;
+    margin-bottom: 1rem;
+    //border-bottom-left-radius: 1rem;
+    h2{
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.pruning-info-a{
+  font-size: 1.45rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #8b9b5d;
+  line-height: 1.9rem;
+}
+
+.pruning-info-b{
+  border-bottom: solid;
+  border-bottom-color: #8b9b5d;
+  font-size: 1.3rem;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.pruning-info-c{
+  padding: 1rem;
+  background-color: #95523F;
+  display: inline-block;
+  font-family: "c_bold";
 }
 
 .to-bottom{
@@ -381,6 +428,38 @@ footer{
   height: 100%;
 }
 
+.slideshow {
+  width: 350px;
+  height: 200px;
+  overflow: hidden;
+  border: 3px solid #F2F2F2;
+}
+
+.slideshow ul {
+   /* 4 images donc 4 x 100% */
+  width: 400%;
+  height: 200px;
+  padding:0; margin:0;
+  list-style: none;
+}
+.slideshow li {
+  float: left;
+}
+
+.carousel-item{
+  h1{
+    color: #ffffff;
+    background-color: #95523F;
+  }
+  p{
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #373d40;
+    padding: 0.5rem;
+  }
+}
+
 @media screen and (max-width: 768px){
   #section-bottom {
     z-index:-1
@@ -460,7 +539,7 @@ footer{
   }
 }
 
-@media screen and (max-width: 1440px){
+/* @media screen and (max-width: 1440px){
   .fire-wood-text{
     font-size: large!important;
   }
@@ -486,4 +565,4 @@ footer{
   .about-text{
     font-size: large!important;
   }
-}
+} */
