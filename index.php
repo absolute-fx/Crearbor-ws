@@ -14,8 +14,10 @@
     <meta property='og:url' content='http://crearbor.be' />
     <link rel="icon" href="./images/icon.png">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="./css/main.css">
     <link type="text/css" rel="stylesheet" href="./css/aos.css">
+    
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36537469-3"></script>
@@ -46,23 +48,27 @@
     <div class="col-md-10" data-aos="fade-down" data-aos-offset="200" data-aos-duration="800">
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
+                <li class="nav-item home d-none">
                     <a class="nav-link active" data-href="#home" href="#" data-toggle="collapse" data-target=".navbar-collapse.show">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
-                <li class="nav-item">
+                <li class="nav-item about d-none">
                     <a class="nav-link" href="#" data-href="#about" data-toggle="collapse" data-target=".navbar-collapse.show">Qui sommes-nous?</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-href="#about" data-toggle="collapse" data-target=".navbar-collapse.show">Elagage & abattage</a>
+                <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
+                <li class="nav-item service-a d-none">
+                    <a class="nav-link" href="#" data-href="#pruning" data-toggle="collapse" data-target=".navbar-collapse.show">Elagage & abattage</a>
                 </li>
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
-                <li class="nav-item">
+                <li class="nav-item wood d-none">
                     <a class="nav-link" href="#" data-href="#fire-wood" data-toggle="collapse" data-target=".navbar-collapse.show">Bois de chauffage</a>
                 </li>
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
-                <li class="nav-item">
+                <li class="nav-item contact d-none">
                     <a class="nav-link" href="#" data-href="#contact" data-toggle="collapse" data-target=".navbar-collapse.show">Contact</a>
+                </li>
+                <li class="liLoader">
+                    <div class="spinner-border spinner-border-sm ml-3" role="status"></div>
                 </li>
             </ul>
         </div>
@@ -154,17 +160,106 @@
 
 <section id="pruning" class="d-none">
     <div class="container-fluid">
-    <div class="row section-padding mb-5 headline-container">
+        <div class="row section-padding mb-3 headline-container">
             <div class="col-md-2" >
 
             </div>
             <div class="col-md-10">
-                <h1 class="crearbor-green-a" data-aos="fade-down">Elagage & Abattage</h1>
-                <h2 class="crearbor-grey" data-aos="fade-right">A votre côté tout au long du cycle de vie de l'arbre</h2>
+                <h1 class="crearbor-brown-a" data-aos="fade-down">ÉLAGAGE & ABATTAGE</h1>
+                <h2 class="" data-aos="fade-right">A votre côté tout au long du cycle de vie de l'arbre</h2>
             </div>
         </div>
         <div class="row">
-            <p>patata</p>
+            <div class="col-md-5"></div>
+            <div class="col-md-6">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <img src="./images/slider-mask.png" class="img-fluid" style="position: absolute; z-index: 5; pointer-events: none;" alt="">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="" alt="First slide">
+                        <div class="carousel-caption">
+                            <h1>Plantation</h1>
+                            <p class=" d-none d-md-block">L'introduction d'un nouvel arbre dans un jardin est toujours un événement. Il grandira au fil du temps voyant des générations se succéder, immuable et fier.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Second slide">
+                        <div class="carousel-caption">
+                            <h1>Taille de formation</h1>
+                            <p class=" d-none d-md-block">Ce service de taille sur les jeunes arbres greffés sur pied depuis un an consiste à déterminer la taille et la forme qu'on souhaite donner à son arbre.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Third slide">
+                        <div class="carousel-caption ">
+                            <h1>Elagage</h1>
+                            <p class=" d-none d-md-block">Ce service consiste en la coupe de certaines branches mortes ou vivantes d'un arbre pour en orienter ou limiter le développement.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Third slide">
+                        <div class="carousel-caption ">
+                            <h1>Haubannage</h1>
+                            <p class=" d-none d-md-block">Ce service consiste à sécuriser et consolider  un arbre afin d'éviter la rupture de branche en plaçant des haubans. Cette technique a l'avantage de consolider l'arbre sans engendrer de plaies traumatisantes et sans modifier le port et le volume naturel de l'arbre.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Third slide">
+                        <div class="carousel-caption ">
+                            <h1>Abattage</h1>
+                            <p class=" d-none d-md-block">Ce service consiste à couper l’arbre à la base pour provoquer sa chute et ensuite permettre le retrait du site et son exploitation.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Third slide">
+                        <div class="carousel-caption ">
+                            <h1>Démontage</h1>
+                            <p class=" d-none d-md-block">Ce service consiste à retirer tout ou partie de la couronne de l'arbre dressé avant de l'abattre ou de débiter entièrement l'arbre vertical lorsque l'abattage est impossible.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Third slide">
+                        <div class="carousel-caption ">
+                            <h1>Essouchage</h1>
+                            <p class=" d-none d-md-block">Ce service consiste à détruire les racines et la souche de l'arbre abattu afin d'aplanir le terrain libéré de l'arbre.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="" alt="Third slide">
+                        <div class="carousel-caption ">
+                            <h1>Mise à blanc </h1>
+                            <p class=" d-none d-md-block">Ce service (gyrobroyage) consiste à nettoyer un terrain laissé en friche de tous ses déchets naturels tels que les branches, les buissons, les mauvaises herbes, les arbustes, les ronces et autres végétations encombrantes.</p>
+                        </div>
+                    </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-5" style="font-size: 1.5rem;">
+                <span class="pruning-info-c">Une urgence ? Contactez-nous 24h/7j et nous mettons tout en oeuvre pour vous aider.</span>
+                
+            </div>
         </div>
     </div>
 </section>
@@ -237,7 +332,7 @@
                 <img src="./images/green_leaf_shadow.png" alt="Cre'Arbor leaf" data-aos="flip-left">
             </div>
             <div class="col-md-6 pt-3 fire-wood-text" data-aos="fade-up" data-aos-offset="200">
-                Votre bois de chauffage est <strong>séché naturellement et à l’abri chez Cre’Arborw</strong>.  Ainsi il brûle beaucoup plus lentement et produit plus de calories que du bois séché dans un four.
+                Votre bois de chauffage est <strong>séché naturellement et à l’abri chez Cre’Arbor</strong>.  Ainsi il brûle beaucoup plus lentement et produit plus de calories que du bois séché dans un four.
             </div>
             <div class="col-md-1" ></div>
         </div>
@@ -245,7 +340,7 @@
             <div class="col-md-5 fire-wood-leaf" >
                 <img src="./images/green_leaf_shadow.png" alt="Cre'Arbor leaf" data-aos="flip-left">
             </div>
-            <div class="col-md-6 pt-3 fire-wood-text" data-aos="fade-up" data-aos-offset="200">
+            <div class="col-md-6 pt-3 fire-wood-text " data-aos="fade-up" data-aos-offset="200">
                 Comme vous le souhaitez, votre commande est livrée <strong>à domicile ou à emporter</strong> chez Cre’Arbor à Ecaussinnes.
             </div>
             <div class="col-md-1" ></div>

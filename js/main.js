@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    console.log(window.devicePixelRatio);
+    //jQuery.fn.carousel.Constructor.TRANSITION_DURATION = 2000  // 2 seconds
 });
 
 $('.navbar-nav>li>a').on('click', function(){

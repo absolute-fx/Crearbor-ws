@@ -52,14 +52,12 @@ let lgCamTargetPos = [
 let xsCamPos = [
     {x:5000, y:444, z:593},
     {x:1595, y:1000, z:1000},
-    {x:1595, y:1000, z:1000},
     {x:890, y:1000, z:560},
     {x:600, y:1000, z:690}
 ];
 
 let xsCamTargetPos = [
     { x: 0, y:1200, z:50 },
-    { x: 353, y:1000, z:1250 },
     { x: 353, y:1000, z:1250 },
     { x: 170, y:1000, z:1030 },
     { x: 0, y:1000, z:1125 }
@@ -92,11 +90,8 @@ function navClickAction(target, btn){
     $(btn).addClass('active');
 }
 
-$(document).ready(function(){
-    console.log('ready!')
-    setNav();
-    init();
-})
+setNav();
+init();
 
 function init() {
     checkInnerWidth();
@@ -540,7 +535,9 @@ function setScene_5(){
 function setSceneLoader_1(){
     loadingManager_r1 = new THREE.LoadingManager();
     loadingManager_r1.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+        //console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         let percent = Math.round(itemsLoaded / itemsTotal * 100) + '%';
+        //console.log(percent);
         $('#progress-bar').css('width', percent);
     };
 
@@ -550,12 +547,9 @@ function setSceneLoader_1(){
             const loadingScreen = document.getElementById( 'loading-screen' );
             loadingScreen.classList.add( 'fade-out' );
             loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-            //console.log(window.scrollY);
-            //$('section').removeClass('d-none');
-            //$('footer').removeClass('d-none');
             $('.home').removeClass('d-none');
             $('#home').removeClass('d-none');
-            setInitEngine()
+            getSectionsSize();
 
             new TWEEN.Tween( tree_1.scale )
                 .to( {x: 1, y: 1, z: 1}, 2000 )
@@ -575,12 +569,11 @@ function setSceneLoader_2(){
         
     };
     loadingManager_r2.onLoad =  () => {
-        //getSectionsSize();
         $('.about').removeClass('d-none');
         $('#about').removeClass('d-none');
-        setSceneLoader_3();
     }
     setScene_2();
+    setSceneLoader_3();
 }
 
 function setSceneLoader_3(){
@@ -589,12 +582,11 @@ function setSceneLoader_3(){
         
     };
     loadingManager_r3.onLoad =  () => {
-        setInitEngine()
         $('.service-a').removeClass('d-none');
         $('#pruning').removeClass('d-none');
-        setSceneLoader_4();
     }
     setScene_3();
+    setSceneLoader_4();
 }
 
 function setSceneLoader_4(){
@@ -603,11 +595,10 @@ function setSceneLoader_4(){
         
     };
     loadingManager_r4.onLoad =  () => {
-        setInitEngine()
         $('.wood').removeClass('d-none');
         $('#fire-wood').removeClass('d-none');
-        setSceneLoader_5();
     }
+    setSceneLoader_5();
     setScene_4();
 }
 
@@ -617,20 +608,7 @@ function setSceneLoader_5(){
         
     };
     loadingManager_r5.onLoad =  () => {
-        /* setTimeout(() =>{
-            getSectionsSize();
-        },1000); */
         $('.contact').removeClass('d-none');
-        $('#contact').removeClass('d-none');
-        $('footer').removeClass('d-none');
-        let i = 0;
-        $('.carousel-item img').each(function(img){
-            $(this).attr('src','./images/slides/ea_' + i + '.jpg');
-            i++;
-        })
-        $('.liLoader').fadeOut("slow", function() {
-            setInitEngine()
-          });
     }
     setScene_5();
 }
@@ -676,15 +654,6 @@ function animate() {
         }
     }
     TWEEN.update();
-    /*if(clickAnimate){
-        if(window.scrollY > 0){
-            //console.log('anim click = true');
-            updateCamera();
-        }
-    }else{
-        //console.log('anim click = false');
-        updateCamera();
-    }*/
     composer.render();
     if(rendering) requestAnimationFrame( animate );
 }
@@ -828,7 +797,6 @@ function getSectionsSize(){
         sectionYPos.push(yPos);
         yPos += $(this).height();
     });
-    console.log('sectionsSizes', sectionsSizes);
     /*console.log("sectionsSizes");
     console.log(sectionsSizes);
     console.log("sectionYPos");
@@ -845,18 +813,7 @@ function onWindowResize() {
     windowHalfY = window.innerHeight / 2;
     getSectionsSize();
     checkInnerWidth();
-    console.log(sectionsSizes, sectionYPos)
-    //console.log(window.innerWidth);
-}
-
-function setInitEngine(){
-    sectionsSizes = [];
-    sectionYPos = [];
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    getSectionsSize();
-    checkInnerWidth();
-    //console.log('SYZE', sectionsSizes, 'Y',sectionYPos)
+    console.log(window.innerWidth);
 }
 
 function checkInnerWidth(){
