@@ -630,6 +630,7 @@ function setSceneLoader_5(){
         })
         $('.liLoader').fadeOut("slow", function() {
             setInitEngine()
+            AOS.init();
           });
     }
     setScene_5();
