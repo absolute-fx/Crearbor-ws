@@ -172,7 +172,7 @@
             <div class="col-md-5"></div>
             <div class="col-md-6">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <img src="./images/slider-mask.png" class="img-fluid" style="position: absolute; z-index: 5; pointer-events: none;" alt="">
+                    <img src="./images/slider-mask.png" class="img-fluid" style="position: absolute; z-index: 5; pointer-events: none;width:100%;" alt="">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
