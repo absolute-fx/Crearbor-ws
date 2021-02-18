@@ -44,8 +44,8 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation" data-aos="fade-right">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="col-md-2"></div>
-    <div class="col-md-10" data-aos="fade-down" data-aos-offset="200" data-aos-duration="800">
+    <div class="col-md-1"></div>
+    <div class="" data-aos="fade-down" data-aos-offset="200" data-aos-duration="800">
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item home d-none">
@@ -58,6 +58,10 @@
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
                 <li class="nav-item service-a d-none">
                     <a class="nav-link" href="#" data-href="#pruning" data-toggle="collapse" data-target=".navbar-collapse.show">Elagage & abattage</a>
+                </li>
+                <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
+                <li class="nav-item service-b d-none">
+                    <a class="nav-link" href="#" data-href="#construction" data-toggle="collapse" data-target=".navbar-collapse.show">Aménagements en bois</a>
                 </li>
                 <li role="separator" class="divider d-none d-md-block d-sm-none">|</li>
                 <li class="nav-item wood d-none">
@@ -258,6 +262,67 @@
             <div class="col-md-10 mt-5" style="font-size: 1.5rem;">
                 <span class="pruning-info-c">Une urgence ? Contactez-nous 24h/7j et nous mettons tout en oeuvre pour vous aider.</span>
                 
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="construction" class="d-none">
+    <div class="container-fluid">
+        <div class="row section-padding mb-5 headline-container">
+            <div class="col-md-2" ></div>
+            <div class="col-md-10">
+                <h1 class="crearbor-green-a" data-aos="fade-down">AMENAGEMENT EXTERIEUR EN BOIS</h1>
+                <h2 class="" data-aos="fade-right">Durable - Créatif - Unique</h2>
+            </div>
+        </div>
+        <div class="container-fluid green-container mb-sm-1">
+            <div class="row">
+                <div class="col-md-6 about-text">
+                    <div id="carouselExampleIndicatorsB" class="carousel slide" data-ride="carousel">
+                        <img src="./images/slider-mask-2.png" class="img-fluid" style="position: absolute; z-index: 5; pointer-events: none;width:100%;" alt="">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicatorsB" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicatorsB" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicatorsB" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicatorsB" data-slide-to="3"></li>
+                            <li data-target="#carouselExampleIndicatorsB" data-slide-to="4"></li>
+                            <li data-target="#carouselExampleIndicatorsB" data-slide-to="5"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="./images/slides/c_0.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="./images/slides/c_1.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="./images/slides/c_2.jpg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="./images/slides/c_3.jpg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="./images/slides/c_4.jpg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="./images/slides/c_5.jpg" alt="Third slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicatorsB" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicatorsB" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 construction-text" style="line-height: 2rem;">
+                    <p>Cre’Arbor réalise tous vos projets d’aménagements extérieurs en bois.<br>Savoir-faire, souci du détail et créativité sont les atouts de Cre’Arbor pour ce volet de nos activités.   Bardages, carports, abris de jardin, terrasses, clôtures, poolhouses, jardinières, etc.<br>Nous vous proposons un catalogue complet d’aménagements réalisés sur-mesure adaptés à vos besoins et à votre budget.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

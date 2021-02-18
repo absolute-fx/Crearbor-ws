@@ -8,7 +8,7 @@ import { RenderPass } from '../js/jsm/postprocessing/RenderPass.js';
 let container;
 let camera, scene, renderer, ambientLight, pointLight, composer;
 let rendering = true;
-let loadingManager_r1, loadingManager_r2, loadingManager_r3, loadingManager_r4, loadingManager_r5;
+let loadingManager_r1, loadingManager_r2, loadingManager_r3, loadingManager_r3b, loadingManager_r4, loadingManager_r5;
 let tree_1, tree_2, about_scene, about_logo_scene, fireplace_scene, wood_boards, chainsaw, pictures;
 let sectionsSizes = [];
 let sectionYPos = [];
@@ -31,11 +31,12 @@ let camPositions = [];
 let camTargetPositions = [];
 
 // 1024
-const updateZ = 80;
+const updateZ = 300;
 let lgCamPos = [
     {x:2336, y:444, z:593},
     {x:1595, y:-440, z:480},
     {x:370, y:-1520, z:1120},
+    {x:660, y:-1690, z:990},
     {x:890, y:(-2125 - updateZ), z:560},
     {x:600, y:(-2400 - updateZ), z:690}
 ];
@@ -44,6 +45,7 @@ let lgCamTargetPos = [
     { x: 0, y:511, z:700 },
     { x: 353, y:-910, z:850 },
     { x: 20, y:-1655, z:1145 },
+    { x: 245, y:-1835, z:1215 },
     { x: 170, y:(-2065 - updateZ), z:1030 },
     { x: 0, y:(-2500 - updateZ), z:1125 }
 ];
@@ -53,12 +55,14 @@ let xsCamPos = [
     {x:5000, y:444, z:593},
     {x:1595, y:1000, z:1000},
     {x:1595, y:1000, z:1000},
+    {x:1595, y:1000, z:1000},
     {x:890, y:1000, z:560},
     {x:600, y:1000, z:690}
 ];
 
 let xsCamTargetPos = [
     { x: 0, y:1200, z:50 },
+    { x: 353, y:1000, z:1250 },
     { x: 353, y:1000, z:1250 },
     { x: 353, y:1000, z:1250 },
     { x: 170, y:1000, z:1030 },
@@ -410,6 +414,70 @@ function setScene_3(){
     
 }
 
+function setScene_3b(){
+	let fbxLoader = new FBXLoader(loadingManager_r3b);
+	let textureLoader = new THREE.TextureLoader(loadingManager_r3b);
+	let aoMap = textureLoader.load( './assets/construction_ao.jpg', (texture) =>{texture.anisotropy = renderer.capabilities.getMaxAnisotropy()} );
+	aoMap.encoding = THREE.sRGBEncoding;
+	
+	let diffuseMap = textureLoader.load( './assets/ground-construction.png', (texture) =>{texture.anisotropy = renderer.capabilities.getMaxAnisotropy()} );
+    //diffuseMap.encoding = THREE.sRGBEncoding;
+    let ground_mat = new THREE.MeshStandardMaterial( {
+        map: diffuseMap,
+        transparent: diffuseMap
+    } );
+
+	let innerWood = new THREE.MeshStandardMaterial({
+        color: 0xb2732d,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+    });
+
+    let bark = new THREE.MeshStandardMaterial({
+        color: 0x301407,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+    });
+
+    let green = new THREE.MeshStandardMaterial({
+        color: 0x93AB31,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+	});
+	
+	let meter = new THREE.MeshStandardMaterial({
+        color: 0xe3a231,
+        aoMap: aoMap,
+        aoMapIntensity: 1
+    });
+	
+	fbxLoader.load( './assets/construction.fbx', function ( object ) {
+        object.traverse(obj => obj.frustumCulled = false);
+        object.traverse( function ( child ) {
+			console.log("CHILD", child);
+			if(child.name === 'construction_model001')
+			{
+				child.material[0] = innerWood;
+				child.material[1] = bark;
+				child.material[2] = green;
+				child.material[3] = bark;
+				child.material[4] = green;
+				child.material[5] = meter;
+			}
+			else if(child.name === "ground_construction001"){
+				child.material = ground_mat;
+				console.log('GROUNF CONTRUCTION')
+			}
+		});
+		scene.add(object);
+		object.position.x = -12;
+        object.position.y = -1950;
+		object.position.z = 1150;
+		
+		object.rotation.y = degrees_to_radians(60);
+	});
+}
+
 function setScene_4(){
     let fbxLoader = new FBXLoader(loadingManager_r4);
     let textureLoader = new THREE.TextureLoader(loadingManager_r4);
@@ -592,9 +660,21 @@ function setSceneLoader_3(){
         setInitEngine()
         $('.service-a').removeClass('d-none');
         $('#pruning').removeClass('d-none');
-        setSceneLoader_4();
+        setSceneLoader_3b();
     }
     setScene_3();
+}
+
+function setSceneLoader_3b(){
+	loadingManager_r3b = new THREE.LoadingManager();
+	loadingManager_r3b.onProgress = function ( url, itemsLoaded, itemsTotal ) {};
+	loadingManager_r3b.onLoad =  () => {
+		setInitEngine()
+		$('.service-b').removeClass('d-none');
+		$('#construction').removeClass('d-none');
+		setSceneLoader_4();
+	}
+	setScene_3b()
 }
 
 function setSceneLoader_4(){
@@ -624,14 +704,14 @@ function setSceneLoader_5(){
         $('#contact').removeClass('d-none');
         $('footer').removeClass('d-none');
         let i = 0;
-        $('.carousel-item img').each(function(img){
+        $('#carouselExampleIndicators .carousel-item img').each(function(img){
             $(this).attr('src','./images/slides/ea_' + i + '.jpg');
             i++;
         })
         $('.liLoader').fadeOut("slow", function() {
             setInitEngine()
             AOS.init();
-          });
+		});
     }
     setScene_5();
 }
@@ -718,6 +798,11 @@ function updateCamera(){
     stops.push(starts[3] + (sectionsSizes[3]));
     if(window.scrollY >= starts[3] && window.scrollY < stops[3] ){
         moveCam(3, starts[3], stops[3], false);
+    }
+    starts.push(sectionYPos[4]);
+    stops.push(starts[4] + (sectionsSizes[4]));
+    if(window.scrollY >= starts[4] && window.scrollY < stops[4] ){
+        moveCam(4, starts[4], stops[4], false);
     }
 }
 
@@ -880,4 +965,9 @@ function checkInnerWidth(){
 function onTransitionEnd(e){
     $("#loading-screen").remove();
     e.target.remove();
+}
+
+function degrees_to_radians(degrees){
+  const pi = Math.PI;
+  return degrees * (pi/180);
 }
