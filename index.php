@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Cre'Arbor</title>
@@ -272,7 +272,7 @@
         <div class="row section-padding mb-5 headline-container">
             <div class="col-md-2" ></div>
             <div class="col-md-10">
-                <h1 class="crearbor-green-a" data-aos="fade-down">AMENAGEMENT EXTERIEUR EN BOIS</h1>
+                <h1 class="crearbor-green-a" data-aos="fade-down">AMENAGEMENTS EXTERIEURS EN BOIS</h1>
                 <h2 class="" data-aos="fade-right">Durable - Créatif - Unique</h2>
             </div>
         </div>
@@ -319,7 +319,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 construction-text" style="line-height: 2rem;">
+                <div class="col-md-6 construction-text" style="line-height: 2rem;" data-aos="fade-up" data-aos-offset="200">
                     <p>Cre’Arbor réalise tous vos projets d’aménagements extérieurs en bois.<br>Savoir-faire, souci du détail et créativité sont les atouts de Cre’Arbor pour ce volet de nos activités.   Bardages, carports, abris de jardin, terrasses, clôtures, poolhouses, jardinières, etc.<br>Nous vous proposons un catalogue complet d’aménagements réalisés sur-mesure adaptés à vos besoins et à votre budget.
                     </p>
                 </div>
